@@ -37,7 +37,7 @@ const cryptoRoutes = require('./routes/cryptoRoutes');
 
 // Basic route to test server
 app.get('/', (req, res) => {
-  res.send('Coinbase Clone Backend API');
+  res.send('CryptoWebapp Backend API active!');
 });
 
 // Routes
