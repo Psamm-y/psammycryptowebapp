@@ -36,11 +36,12 @@ const registerUser = async (req, res) => {
     if (user) {
       const token = generateToken(user._id);
 
-      // Set cookie
+      // Set cookie — cross-origin requires sameSite:'none' + secure:true
+      const isProduction = process.env.NODE_ENV === 'production';
       res.cookie('jwt', token, {
         httpOnly: true,
-        secure: process.env.NODE_ENV === 'production',
-        sameSite: 'strict',
+        secure: isProduction,
+        sameSite: isProduction ? 'none' : 'lax',
         maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days
       });
 
@@ -77,11 +78,12 @@ const loginUser = async (req, res) => {
     if (user && (await user.comparePassword(password))) {
       const token = generateToken(user._id);
 
-      // Set cookie
+      // Set cookie — cross-origin requires sameSite:'none' + secure:true
+      const isProduction = process.env.NODE_ENV === 'production';
       res.cookie('jwt', token, {
         httpOnly: true,
-        secure: process.env.NODE_ENV === 'production',
-        sameSite: 'strict',
+        secure: isProduction,
+        sameSite: isProduction ? 'none' : 'lax',
         maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days
       });
 
