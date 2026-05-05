@@ -8,7 +8,6 @@ You are required to implement the features using Node.js with MongoDB as the dat
 ## 1. Authentication System (JWT-Based)
 
 ### Register (GET /register)
-
 Create a user account using:
 
 - Name
